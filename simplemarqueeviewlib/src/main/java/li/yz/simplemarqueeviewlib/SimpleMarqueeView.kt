@@ -39,7 +39,7 @@ class SimpleMarqueeView : View {
             3 -> typeFace = Typeface.defaultFromStyle(Typeface.ITALIC)
             4 -> typeFace = Typeface.defaultFromStyle(Typeface.BOLD_ITALIC)
         }
-        mText = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
+        val text = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
         shadowWidth = a.getDimension(R.styleable.SimpleMarqueeView_shadow_width, dp2px(14f).toFloat())
         margin = a.getDimension(R.styleable.SimpleMarqueeView_margin_txt, dp2px(133f).toFloat())
         speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 12).toLong()
@@ -47,8 +47,8 @@ class SimpleMarqueeView : View {
         a.recycle()
         post {
             initShadow()
-            setText(mText)
         }
+        setText(text)
     }
 
     private var density: Float = 2f
@@ -128,6 +128,7 @@ class SimpleMarqueeView : View {
     }
 
     fun setText(text: String) {
+        if(text == mText) return
         this.mText = text
         stopAnim()
         if (visibility == VISIBLE) {
@@ -154,6 +155,7 @@ class SimpleMarqueeView : View {
         if (showMode == 0) {
             invalidate()
         } else {
+            invalidate()
             startAnim()
         }
     }
