@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SimpleMarqueeView">
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="reference|color"/>
+        <attr name="textStyle" format="enum">
+            <enum name="normal" value="1"/>
+            <enum name="bold" value="2"/>
+            <enum name="italic" value="3"/>
+            <enum name="bold_italic" value="4"/>
+        </attr>
+        <attr name="left_drawable" format="reference"/>
+        <attr name="speed" format="integer"/>
+        <attr name="delay" format="integer"/>
+        <attr name="margin_txt" format="dimension"/>
+        <attr name="text" format="string"/>
+        <attr name="shadow_width" format="dimension"/>
+    </declare-styleable>
+</resources>

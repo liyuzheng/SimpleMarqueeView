@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <li.yz.simplemarqueeviewlib.SimpleMarqueeView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:layout_marginTop="100dp"
+            android:background="#000000"
+            android:paddingStart="30dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            app:delay="1500"
+            app:margin_txt="133dp"
+            app:textSize="12sp"
+            app:textColor="@color/colorPrimary"
+            app:shadow_width="12dp"
+            app:speed="11"
+            app:textStyle="bold"
+    />
+
+
+    <li.yz.simplemarqueeviewlib.SimpleMarqueeView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text1"
+            app:text="Hello World"
+            android:layout_marginTop="100dp"
+            android:background="@color/colorAccent"
+
+    />
+</LinearLayout>
