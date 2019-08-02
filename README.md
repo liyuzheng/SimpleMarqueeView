@@ -2,7 +2,7 @@ Textview android:ellipsize="marquee" often dose not work,so I build this lib.
 
 first:
 
-implementation 'li.y.z:simplemarqueeviewlib:1.0.3'
+implementation 'li.y.z:simplemarqueeviewlib:1.0.6'
 
 second:
 
