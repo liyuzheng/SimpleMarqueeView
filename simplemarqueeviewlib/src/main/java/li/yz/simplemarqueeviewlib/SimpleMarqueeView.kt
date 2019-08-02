@@ -127,7 +127,6 @@ class SimpleMarqueeView : View {
     }
 
     fun setText(text: String) {
-        if (this.mText == text) return
         this.mText = text
         stopAnim()
         if (visibility == VISIBLE) {
