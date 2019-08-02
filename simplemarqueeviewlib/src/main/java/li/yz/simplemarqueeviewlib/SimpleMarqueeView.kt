@@ -120,9 +120,10 @@ class SimpleMarqueeView : View {
 
     private val textPaint by lazy {
         TextPaint().apply {
-            color = textColor
-            textSize = this@SimpleMarqueeView.textSize
+            this.color = this@SimpleMarqueeView.textColor
+            this.textSize = this@SimpleMarqueeView.textSize
             this.typeface = this@SimpleMarqueeView.typeFace
+            this.isAntiAlias = true
         }
     }
 
