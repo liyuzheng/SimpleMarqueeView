@@ -41,7 +41,7 @@ class SimpleMarqueeView : View {
             3 -> typeFace = Typeface.defaultFromStyle(Typeface.ITALIC)
             4 -> typeFace = Typeface.defaultFromStyle(Typeface.BOLD_ITALIC)
         }
-        txt = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
+        text = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
         shadowWidth = a.getDimension(R.styleable.SimpleMarqueeView_shadow_width, dp2px(14f).toFloat())
         margin = a.getDimension(R.styleable.SimpleMarqueeView_margin_txt, dp2px(133f).toFloat())
         speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 11).toLong()
@@ -49,7 +49,7 @@ class SimpleMarqueeView : View {
         a.recycle()
         post {
             initShadow()
-            setText(txt)
+            setText(text)
         }
     }
 
@@ -63,7 +63,7 @@ class SimpleMarqueeView : View {
     private var typeFace = Typeface.DEFAULT
 
     //文本
-    private var txt = ""
+    private var text = ""
     //字体宽度
     private var txtWidth = 0
     //左右阴影宽度
@@ -132,7 +132,7 @@ class SimpleMarqueeView : View {
 
     fun setText(txt: String) {
         stopAnim()
-        this.txt = txt
+        this.text = txt
         if (visibility == VISIBLE) {
             post {
                 measureTxt()
@@ -145,7 +145,7 @@ class SimpleMarqueeView : View {
     override fun setVisibility(visibility: Int) {
         super.setVisibility(visibility)
         if (visibility == View.VISIBLE) {
-            setText(txt)
+            setText(text)
         } else {
             stopAnim()
         }
@@ -206,9 +206,9 @@ class SimpleMarqueeView : View {
         paddingRect.right = width - paddingEnd
         paddingRect.bottom = height - paddingBottom
         canvas?.clipRect(paddingRect)
-        canvas?.drawText(txt, x, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
+        canvas?.drawText(text, x, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
         if (showMode == 1) {
-            canvas?.drawText(txt, y, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
+            canvas?.drawText(text, y, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
             if (abs(x) < txtWidth - paddingStart && anim?.isRunning == true) {
                 leftShadow?.run {
                     shadowPaint.shader = this
@@ -249,7 +249,7 @@ class SimpleMarqueeView : View {
     }
 
     private fun measureTxt() {
-        txtWidth = textPaint.measureText(txt).toInt()
+        txtWidth = textPaint.measureText(text).toInt()
         scale = txtWidth / (width - paddingStart - paddingEnd) + 1
     }
 
