@@ -1,8 +1,11 @@
 Textview android:ellipsize="marquee" often dose not work,so I build this lib.
 
 first:
+
 implementation 'li.y.z:simplemarqueeviewlib:1.0.3'
+
 second:
+
  <li.yz.simplemarqueeviewlib.SimpleMarqueeView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -13,12 +16,19 @@ second:
             app:textColor="@color/colorPrimary"/>
 
 attrs:
+
 app:delay="1500" //animation delay
+
 app:margin_txt="133dp" //between two texts margin
+
 app:textSize="12sp" 
+
 app:textColor="@color/colorPrimary"
+
 app:shadow_width="12dp" //shadow,if background is not color , that dose not work
+
 app:speed="12"   //the system marquee textview is 12L
+
 app:textStyle="bold"
 
 
