@@ -12,7 +12,6 @@ import android.view.animation.LinearInterpolator
 import kotlin.math.abs
 
 /**
- * desc: todo Overview
  * createed by liyuzheng on 2019/7/30 15:06
  */
 class SimpleMarqueeView : View {
@@ -40,40 +39,40 @@ class SimpleMarqueeView : View {
             3 -> typeFace = Typeface.defaultFromStyle(Typeface.ITALIC)
             4 -> typeFace = Typeface.defaultFromStyle(Typeface.BOLD_ITALIC)
         }
-        text = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
+        mText = a.getString(R.styleable.SimpleMarqueeView_text) ?: ""
         shadowWidth = a.getDimension(R.styleable.SimpleMarqueeView_shadow_width, dp2px(14f).toFloat())
         margin = a.getDimension(R.styleable.SimpleMarqueeView_margin_txt, dp2px(133f).toFloat())
-        speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 11).toLong()
+        speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 12).toLong()
         delay = a.getInt(R.styleable.SimpleMarqueeView_delay, 1500).toLong()
         a.recycle()
         post {
             initShadow()
-            setText(text)
+            setText(mText)
         }
     }
 
     private var density: Float = 2f
     private var scaleDensity: Float = 2f
-    //字号
+    //font size
     private var textSize = 33f
-    //字体颜色
+    //font color
     private var textColor = Color.parseColor("#000000")
-    //字样式
+    //style
     private var typeFace = Typeface.DEFAULT
 
     //文本
-    private var text = ""
-    //字体宽度
+    private var mText = ""
+    //compute text width if txtWidth>width  user marquee
     private var txtWidth = 0
-    //左右阴影宽度
+    //shadow,if background is not color , that is not useful
     private var shadowWidth = 0f
-    //速度数值越大越慢,11与系统跑马灯速度一致
-    private var speed = 11L
-    //每次停留时长
+    //the system marquee textview is 12L
+    private var speed = 12L
+    //animation delay
     private var delay = 1500L
-    //两段文本间距
+    //between two texts margin
     private var margin = 0f
-    //0 只绘制，1跑马灯
+    //0 text 1 marquee
     private var showMode = 0
     private var anim: ValueAnimator? = null
     private var animValue: Int = 0
@@ -87,6 +86,7 @@ class SimpleMarqueeView : View {
         Paint()
     }
 
+    // if background is not color, it's not useful
     private fun initShadow() {
         if (background is ColorDrawable) {
             val colorD = ColorDrawable((background as? ColorDrawable)?.color ?: 0)
@@ -125,13 +125,11 @@ class SimpleMarqueeView : View {
             this.typeface = this@SimpleMarqueeView.typeFace
         }
     }
-    private val drawablePaint by lazy {
-        Paint()
-    }
 
-    fun setText(txt: String) {
+    fun setText(text: String) {
+        if (this.mText == text) return
+        this.mText = text
         stopAnim()
-        this.text = txt
         if (visibility == VISIBLE) {
             post {
                 measureTxt()
@@ -141,10 +139,12 @@ class SimpleMarqueeView : View {
         }
     }
 
+    fun getText() = mText
+
     override fun setVisibility(visibility: Int) {
         super.setVisibility(visibility)
         if (visibility == View.VISIBLE) {
-            setText(text)
+            setText(mText)
         } else {
             stopAnim()
         }
@@ -205,9 +205,9 @@ class SimpleMarqueeView : View {
         paddingRect.right = width - paddingEnd
         paddingRect.bottom = height - paddingBottom
         canvas?.clipRect(paddingRect)
-        canvas?.drawText(text, x, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
+        canvas?.drawText(mText, x, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
         if (showMode == 1) {
-            canvas?.drawText(text, y, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
+            canvas?.drawText(mText, y, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
             if (abs(x) < txtWidth - paddingStart && anim?.isRunning == true) {
                 leftShadow?.run {
                     shadowPaint.shader = this
@@ -236,17 +236,18 @@ class SimpleMarqueeView : View {
 
 
     private fun switchShowMode() {
-        if (txtWidth + paddingStart + paddingEnd > width) {
+        showMode = if (txtWidth + paddingStart + paddingEnd > width) {
             //跑马灯模式
-            showMode = 1
+            1
         } else {
             //正常显示
-            showMode = 0
+            0
         }
     }
 
+    //compute txt width
     private fun measureTxt() {
-        txtWidth = textPaint.measureText(text).toInt()
+        txtWidth = textPaint.measureText(mText).toInt()
         scale = txtWidth / (width - paddingStart - paddingEnd) + 1
     }
 
@@ -264,6 +265,7 @@ class SimpleMarqueeView : View {
         return (spValue * scaleDensity + 0.5f).toInt()
     }
 
+    //support height wrap_content
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val widthSpecSize = MeasureSpec.getSize(widthMeasureSpec)
@@ -276,4 +278,19 @@ class SimpleMarqueeView : View {
         }
     }
 
+    //if you want  pause anim,use it
+    fun pause() {
+        anim?.takeIf {
+            it.isRunning
+        }?.run {
+            pause()
+        }
+    }
+
+    //if you want resume anim,use it
+    fun resume() {
+        anim?.run {
+            resume()
+        }
+    }
 }

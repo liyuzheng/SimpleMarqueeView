@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
     <li.yz.simplemarqueeviewlib.SimpleMarqueeView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,15 +20,39 @@
             app:textSize="12sp"
             app:textColor="@color/colorPrimary"
             app:shadow_width="12dp"
-            app:speed="11"
+            app:speed="12"
             app:textStyle="bold"
     />
-
-
     <li.yz.simplemarqueeviewlib.SimpleMarqueeView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text1"
+            android:layout_marginTop="100dp"
+            android:background="#000000"
+            app:text="Hello World! This is a Simple Marquee View. You can use it instead of textviewmarquee"
+            app:textColor="@color/colorPrimary"
+    />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text2"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="100dp"
+            android:background="#000000"
+            android:paddingStart="30dp"
+            android:paddingEnd="20dp"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textStyle="bold"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"/>
+
+    <li.yz.simplemarqueeviewlib.SimpleMarqueeView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text3"
             app:text="Hello World"
             android:layout_marginTop="100dp"
             android:background="@color/colorAccent"
