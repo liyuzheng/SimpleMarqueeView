@@ -1,42 +1,40 @@
-Textview android:ellipsize="marquee" often dose not work,so I build this lib.
+# SimpleMarqueeView [ ![Download](https://api.bintray.com/packages/liyz/lyzlib/SimpleMarqueeView/images/download.svg?version=1.0.6) ](https://bintray.com/liyz/lyzlib/SimpleMarqueeView/1.0.6/link)
 
-first:
 
-implementation 'li.y.z:simplemarqueeviewlib:1.0.6'
+### 效果图
 
-second:
+<img src="/resources/simple.gif" style="width: 30%;">
 
- <li.yz.simplemarqueeviewlib.SimpleMarqueeView
- 
+#### Gradle:
+
+    implementation 'li.y.z:simplemarqueeviewlib:1.0.6'
+
+#### 属性
+
+| Attribute 属性          | Description 描述 | 
+|:---				     |:---| 
+| delay         | 一行文字动画执行时间 | 
+| margin_txt         | 两行文字翻页时间间隔 | 
+| textSize         | 文字大小 | 
+| textColor         | 文字颜色 | 
+| shadow_width         | 文字位置:left、center、right | 
+| speed         | 单行设置 |
+| textStyle        | 动画滚动方向:bottom_to_top、top_to_bottom、right_to_left、left_to_right |
+
+#### XML
+
+    <li.yz.simplemarqueeviewlib.SimpleMarqueeView
             android:layout_width="match_parent"
-            
             android:layout_height="wrap_content"
-            
             android:id="@+id/text1"
-            
             android:layout_marginTop="100dp"
-            
             android:background="#000000"
-            
             app:text="Hello World! This is a Simple Marquee View. You can use it instead of textviewmarquee"
-            
             app:textColor="@color/colorPrimary"/>
 
-attrs:
 
-app:delay="1500" //animation delay
+### 关于我
 
-app:margin_txt="133dp" //between two texts margin
+[GitHub: liyuzheng](https://github.com/liyuzheng)  
 
-app:textSize="12sp" 
-
-app:textColor="@color/colorPrimary"
-
-app:shadow_width="12dp" //shadow,if background is not color , that dose not work
-
-app:speed="12"   //the system marquee textview is 12L
-
-app:textStyle="bold"
-
-
-It's not support Spannable now.
+[个人邮箱: yuzheng_li@live.cn]
