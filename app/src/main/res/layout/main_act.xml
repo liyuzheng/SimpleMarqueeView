@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/text"
             android:layout_marginTop="100dp"
-            android:background="#000000"
+            android:background="@drawable/gradient_mine_frg_level_wx"
             android:paddingStart="30dp"
             android:paddingEnd="20dp"
             android:paddingTop="3dp"
