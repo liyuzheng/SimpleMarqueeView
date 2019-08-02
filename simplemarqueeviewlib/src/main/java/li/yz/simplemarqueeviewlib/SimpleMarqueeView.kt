@@ -7,7 +7,6 @@ import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import kotlin.math.abs
@@ -240,11 +239,9 @@ class SimpleMarqueeView : View {
         if (txtWidth + paddingStart + paddingEnd > width) {
             //跑马灯模式
             showMode = 1
-            Log.v("switchShowMode", "showmode1")
         } else {
             //正常显示
             showMode = 0
-            Log.v("switchShowMode", "showmode2")
         }
     }
 
@@ -278,4 +275,5 @@ class SimpleMarqueeView : View {
             setMeasuredDimension(widthSpecSize, (textSize + pTop + pBottom).toInt())
         }
     }
+
 }
