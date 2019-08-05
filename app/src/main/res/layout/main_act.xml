@@ -9,7 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text"
-            android:layout_marginTop="100dp"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
             android:background="@drawable/gradient_mine_frg_level_wx"
             android:paddingStart="30dp"
             android:paddingEnd="20dp"
@@ -21,14 +22,16 @@
             app:textColor="@color/colorPrimary"
             app:shadow_width="12dp"
             app:speed="12"
+            android:tag="text5"
             app:textStyle="bold"
     />
     <li.yz.simplemarqueeviewlib.SimpleMarqueeView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text1"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:background="#000000"
+            android:tag="text1"
             app:text="Hello World! This is a Simple Marquee View. You can use it instead of textviewmarquee"
             app:textColor="@color/colorPrimary"
     />
@@ -37,7 +40,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/text2"
             android:textColor="@color/colorPrimary"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:background="#000000"
             android:paddingStart="30dp"
             android:paddingEnd="20dp"
@@ -54,8 +57,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/text3"
             app:text="Hello World"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:background="@color/colorAccent"
 
     />
+    <Button android:layout_width="100dp" android:layout_height="20dp"
+            android:text="btn1"
+    android:id="@+id/btn1"/>
+    <Button android:layout_width="100dp" android:layout_height="20dp"
+            android:text="btn2"
+            android:id="@+id/btn2"/>
+    <Button android:layout_width="100dp" android:layout_height="20dp"
+            android:text="btn3"
+            android:id="@+id/btn3"/>
+    <Button android:layout_width="100dp" android:layout_height="20dp"
+            android:text="btn4"
+            android:id="@+id/btn4"/>
 </LinearLayout>

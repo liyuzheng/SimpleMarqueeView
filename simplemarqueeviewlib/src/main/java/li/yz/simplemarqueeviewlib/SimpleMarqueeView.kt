@@ -45,9 +45,6 @@ class SimpleMarqueeView : View {
         speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 12).toLong()
         delay = a.getInt(R.styleable.SimpleMarqueeView_delay, 1500).toLong()
         a.recycle()
-        post {
-            initShadow()
-        }
         setText(text)
     }
 
@@ -76,7 +73,6 @@ class SimpleMarqueeView : View {
     private var showMode = 0
     private var anim: ValueAnimator? = null
     private var animValue: Int = 0
-    private var scale: Int = 0
 
     private var leftShadow: LinearGradient? = null
     private var rightShadow: LinearGradient? = null
@@ -127,12 +123,13 @@ class SimpleMarqueeView : View {
         }
     }
 
-    fun setText(text: String) {
-        if(text == mText) return
+    fun setText(text: String, force: Boolean = false) {
+        if (text == mText && !force) return
         this.mText = text
         stopAnim()
-        if (visibility == VISIBLE) {
-            post {
+        post {
+            if (visibility == VISIBLE) {
+                initShadow()
                 measureTxt()
                 switchShowMode()
                 show()
@@ -145,13 +142,14 @@ class SimpleMarqueeView : View {
     override fun setVisibility(visibility: Int) {
         super.setVisibility(visibility)
         if (visibility == View.VISIBLE) {
-            setText(mText)
+            setText(mText, true)
         } else {
             stopAnim()
         }
     }
 
     private fun show() {
+        animValue = 0
         if (showMode == 0) {
             invalidate()
         } else {
@@ -167,7 +165,12 @@ class SimpleMarqueeView : View {
         anim?.interpolator = LinearInterpolator()
         anim?.repeatCount = 0
         anim?.addUpdateListener {
-            animValue = it.animatedValue as Int
+            animValue = if (showMode == 0) {
+                it.cancel()
+                0
+            } else {
+                it.animatedValue as Int
+            }
             invalidate()
         }
         anim?.addListener(object : Animator.AnimatorListener {
@@ -175,8 +178,7 @@ class SimpleMarqueeView : View {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                animValue = 0
-                startAnim()
+                show()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
@@ -191,11 +193,10 @@ class SimpleMarqueeView : View {
     }
 
     private fun stopAnim() {
-        anim?.takeIf {
-            it.isRunning
-        }?.run {
-            cancel()
-        }
+        anim?.cancel()
+        anim?.removeAllListeners()
+        anim = null
+        animValue = 0
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -250,7 +251,6 @@ class SimpleMarqueeView : View {
     //compute txt width
     private fun measureTxt() {
         txtWidth = textPaint.measureText(mText).toInt()
-        scale = txtWidth / (width - paddingStart - paddingEnd) + 1
     }
 
 
