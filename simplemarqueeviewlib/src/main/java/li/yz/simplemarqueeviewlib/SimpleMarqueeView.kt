@@ -140,11 +140,15 @@ class SimpleMarqueeView : View {
     fun getText() = mText
 
     override fun setVisibility(visibility: Int) {
-        super.setVisibility(visibility)
-        if (visibility == View.VISIBLE) {
-            setText(mText, true)
-        } else {
-            stopAnim()
+        if(this@SimpleMarqueeView.visibility == visibility){
+            super.setVisibility(visibility)
+        }else{
+            super.setVisibility(visibility)
+            if (visibility == View.VISIBLE) {
+                setText(mText, true)
+            } else {
+                stopAnim()
+            }
         }
     }
 
