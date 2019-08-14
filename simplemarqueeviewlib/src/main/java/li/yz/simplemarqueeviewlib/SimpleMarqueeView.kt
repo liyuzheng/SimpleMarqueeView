@@ -7,6 +7,7 @@ import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import kotlin.math.abs
@@ -44,12 +45,14 @@ class SimpleMarqueeView : View {
         margin = a.getDimension(R.styleable.SimpleMarqueeView_margin_txt, dp2px(133f).toFloat())
         speed = a.getInt(R.styleable.SimpleMarqueeView_speed, 12).toLong()
         delay = a.getInt(R.styleable.SimpleMarqueeView_delay, 1500).toLong()
+        gravity = a.getInt(R.styleable.SimpleMarqueeView_gravity, 1)
         a.recycle()
         setText(text)
     }
 
     private var density: Float = 2f
     private var scaleDensity: Float = 2f
+    private var gravity = 1
     //font size
     private var textSize = 33f
     //font color
@@ -140,9 +143,9 @@ class SimpleMarqueeView : View {
     fun getText() = mText
 
     override fun setVisibility(visibility: Int) {
-        if(this@SimpleMarqueeView.visibility == visibility){
+        if (this@SimpleMarqueeView.visibility == visibility) {
             super.setVisibility(visibility)
-        }else{
+        } else {
             super.setVisibility(visibility)
             if (visibility == View.VISIBLE) {
                 setText(mText, true)
@@ -205,8 +208,11 @@ class SimpleMarqueeView : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val x = -animValue.toFloat() + paddingStart
-        val y = x + margin + txtWidth
+        val x = if (showMode == 1 || gravity == 1) {
+            -animValue.toFloat() + paddingStart
+        } else {
+            paddingStart + (width - paddingStart - paddingEnd - txtWidth) / 2f
+        }
         paddingRect.left = paddingStart
         paddingRect.top = paddingTop
         paddingRect.right = width - paddingEnd
@@ -214,6 +220,7 @@ class SimpleMarqueeView : View {
         canvas?.clipRect(paddingRect)
         canvas?.drawText(mText, x, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
         if (showMode == 1) {
+            val y = x + margin + txtWidth
             canvas?.drawText(mText, y, textSize + (height - textSize) / 2f - sp2px(1f), textPaint)
             if (abs(x) < txtWidth - paddingStart && anim?.isRunning == true) {
                 leftShadow?.run {

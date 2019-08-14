@@ -15,5 +15,9 @@
         <attr name="margin_txt" format="dimension"/>
         <attr name="text" format="string"/>
         <attr name="shadow_width" format="dimension"/>
+        <attr name="gravity" format="enum">
+            <enum name="start" value="1"/>
+            <enum name="center_horizontal" value="2"/>
+        </attr>
     </declare-styleable>
 </resources>
