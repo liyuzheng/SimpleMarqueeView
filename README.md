@@ -1,4 +1,4 @@
-# SimpleMarqueeView [ ![Download](https://api.bintray.com/packages/liyz/lyzlib/SimpleMarqueeView/images/download.svg?version=1.1.0) ](https://bintray.com/liyz/lyzlib/SimpleMarqueeView/1.1.0/link)
+# SimpleMarqueeView [ ![Download](https://api.bintray.com/packages/liyz/lyzlib/SimpleMarqueeView/images/download.svg?version=1.1.2) ](https://bintray.com/liyz/lyzlib/SimpleMarqueeView/1.1.2/link)
 
 ###
 目前实现的跑马灯效果都是添加view,并且用view动画实现，会占用大量系统资源。
@@ -11,7 +11,7 @@
 
 #### Gradle:
 
-    implementation 'li.y.z:simplemarqueeviewlib:1.1.0'
+    implementation 'li.y.z:simplemarqueeviewlib:1.1.2'
 
 #### 属性
 
@@ -24,6 +24,7 @@
 | shadow_width         | 两端阴影宽度，背景不是颜色时失效 | 
 | speed         | 滚动速度，12为textview跑马灯速度 |
 | textStyle        | 文字样式 |
+| gravity        | 非跑马灯样式时，文字位置 【暂时只支持start|center_horizontal】 |
 
 #### XML
 
