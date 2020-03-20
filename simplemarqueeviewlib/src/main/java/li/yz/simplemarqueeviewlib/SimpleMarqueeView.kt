@@ -202,6 +202,7 @@ class SimpleMarqueeView : View {
     private fun stopAnim() {
         anim?.cancel()
         anim?.removeAllListeners()
+        anim?.removeAllUpdateListeners()
         anim = null
         animValue = 0
     }
