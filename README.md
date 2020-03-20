@@ -1,4 +1,4 @@
-# SimpleMarqueeView [ ![Download](https://api.bintray.com/packages/liyz/lyzlib/SimpleMarqueeView/images/download.svg?version=1.1.2) ](https://bintray.com/liyz/lyzlib/SimpleMarqueeView/1.1.2/link)
+# SimpleMarqueeView [ ![Download](https://api.bintray.com/packages/liyz/lyzlib/SimpleMarqueeView/images/download.svg?version=1.1.2) ](https://bintray.com/liyz/lyzlib/SimpleMarqueeView/1.2.0/link)
 
 ###
 目前实现的跑马灯效果都是添加view,并且用view动画实现，会占用大量系统资源。
